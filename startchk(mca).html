@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>スラロームスタート記録</title> 
+    <style>
+        .input-flex-row {
+            display: flex;
+            gap: 5px;
+            justify-content: left-start; /*center;*/ /* 左揃え */   
+            align-items: left; /*center; */ /* 縦方向を中央揃え */
+            /*flex-wrap: wrap;*/ /* 画面が極端に狭い場合は自動で折り返し */
+        }
+        .input-group {
+            display: inline-block;
+            margin-right: 20px;
+            text-align: center;
+        }
+        .input-container {
+            display: inline-block;
+            margin-right: 20px;
+            text-align: center;
+        }
+        .input-label {
+            font-size: 12px;
+            color: black;
+            display: block;
+        }
+        .input-container {
+            font-size: 12px; /*bib*/
+            color: black;
+            display: block;
+        }
+
+        p {
+            text-align: center; /* テキストを中央揃え */
+        } 
+
+        .number-container {
+            display: flex; /* 横並びにする */
+            justify-content: center; /* 中央揃え */
+            gap: 20px; /* ボックス間の余白 */
+        }
+
+        .number-box {
+            width: 50px; 
+            text-align: center;
+            font-size: 20px;
+        } 
+
+        /* スピンボタン非表示（Chrome, Safari, Edge） */
+        /* スピナーを消すためのCSS 追加*/
+        input[type=number]::-webkit-outer-spin-button,
+        input[type=number]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        input[type=number] {
+            -moz-appearance: textfield;
+            appearance: textfield;
+        }
+    </style>
+</head>
+<body>
+  
+<div class="input-group">  <!--container-->
+<!--    <div class="row"> -->
+<!--        <div class="col-md-12"> -->
+            <h4>スタート記録</h4>
+
+            <div class="input-flex-row" >
+                    <div class="input-container">
+                        <label for="classInput" class="input-label">クラス </label>
+                        <input type="number" class="form-control input-box" id="classInput" name="class"  style="width: 50px; text-align: center; font: bold; font-size: 28px; background-color:orange ;"min="1" max="30">
+                    </div>
+                    <div class="input-container">
+                        <label for="runInput" class="input-label">RUN</label>
+                        <input type="number" class="form-control input-box" id="runInput" name="run" style="width: 50px; text-align: center; font: bold; font-size: 28px; background-color: rgb(208, 255, 80);" min="1" max="2">
+                    </div>
+                    <div class="input-container">
+                        <label for="bibNumberInput" class="input-label">BIBNo</label>
+                        <input type="number" class="form-control input-box" id="bibNumberInput" name="bibNumber" style="width: 50px; text-align: center; font: bold; font-size: 28px; background-color:hotpink; color: black;" >
+                    </div>
+            </div> <br>       
+                    <div>
+                    <!--チェックボックス -->
+                    <input type="checkbox" id="dnsCheckbox" name="dns" value="1" style="margin-left: 5px;">
+                    <label for="dnsCheckbox" style="margin-left: 1px;">DNS</label>
+                    </div>
+
+           <!-- </form> -->
+      <!--  </div> -->
+  <!--</div>-->  
+</div>
+
+<style>
+
+    /* チェックボックスのサイズを大きくする */
+    #dnsCheckbox {
+        transform: scale(1.5); /* チェックボックスを1.5倍に拡大 */
+        margin-left: 10px; /* 左側に余白を追加 */
+    }
+    /* スマホサイズに対応するスタイル */
+    @media (max-width: 600px) {
+        .input-flex-row {
+            display: flex;
+            gap: 20px;
+            justify-content: center; /* これで中央揃え */
+        }
+        .input-container {
+            flex-direction: column;  /* スマホでは縦並びにする */
+            align-items: center;
+            display: flex; /*block;*/
+            margin: 0 0 0 0;
+            width: 100%;
+            text-align: center; /*ラベルの位置 */
+        }    
+        .input-label {
+            font-size: 10px;
+            margin-bottom: 2px;
+            line-height: 1.1;
+        }
+        
+        .input-box {
+            width: 50px; /* 入力ボックスを画面幅に合わせる */
+        }
+
+        button {
+            width: 50px; /* ボタンを画面幅に合わせる */
+            font-size: 16px; /* ボタンのフォントサイズを調整 */
+        }
+
+        h2 {
+            font-size: 32px; /* 見出しのフォントサイズを調整 */
+             text-align: center; /* 見出しを中央揃え */
+        }
+        #classInput {
+            width: 50px; 
+            text-align: center;
+            font-size: 20px;
+            background-color: violet;
+        }
+        #runInput {
+            width: 50px; /* 入力ボックスの幅を調整 */
+            text-align: center;
+            font-size: 20px;
+            background-color: yellow;
+        }
+        #bibNumberInput {
+            width: 80px; /* 入力ボックスの幅を調整 */
+            text-align: center;
+            font-size: 42px;
+            background-color: lightgreen; /* Updated background color */
+        } 
+    }
+</style>
+</body>
+
+ <style>
+        body {
+            font-size: 20px;
+            line-height: 1.0;
+            margin: 0;
+            padding: 10px;
+        }
+
+        .timer-container {
+            display: flex; /* 横並びにする */
+            justify-content: flex-start; /*center; /* 左揃え */
+            align-items: center;    /*center; /* 縦方向を中央揃え */
+            gap: 40px; /* ボタンとタイマーの間に余白を追加 */
+            margin-top: 20px; /* Updated margin-top */
+            padding : 0 0 10px 0; /* Updated padding */
+        }
+
+        #timer {
+            text-align: center;
+            font-size: 50px;
+            color: red;
+        }
+
+        #startButton {
+            width: 70px;
+            height: 70px; /* Updated height */
+            font-size: 20px; /* Fixed typo */
+            padding: 1px 1px; /* 枠内側 */
+            color: white; /* 文字色 */
+            font-weight: bold; /* 太字 */
+            border-radius: 10px; /* 角丸 */
+            background-color: blue; /* ボタン色 */
+        }
+
+        .data-container {
+            margin-top: 20px;
+            max-height: 150px; /* 表示領域の高さを制限 */
+            overflow-y: auto; /* 溢れた場合にスクロール */
+            border: 1px solid #ccc;
+            padding: 10px;
+            background-color: #f9f9f9;
+            font-size: 14px; /* 文字サイズを14pxに設定 */
+            line-height: 1.2; /* 行間を狭く設定 */
+        }
+        
+        .data-container p {
+        margin: 2px 0; /* 行間をさらに狭くする */
+        }
+        .button-container { /*show等並び右*/
+            display: flex;
+            justify-content: right; /* center; */
+            gap: 10px;
+        }
+
+        button {
+            font-size: 14px; /* フォントサイズを12pxに設定 */
+            padding: 3px 2px; /* Updated padding */
+            cursor: pointer;
+        }
+        #showDataButton {
+            width: 60px; /* Updated width */
+            height: 30px; /* Updated height */
+            font-size: 20px; /* Fixed typo */
+            padding: 1px 1px; /* 枠内側 */
+            color: black; /* 文字色 */
+            font-weight: bold; /* 太字 */
+            border-radius: 10px; /* 角丸 */
+            background-color: lightgreen; /* ボタン色 */
+        }
+        #clearDataButton {
+            width: 60px; /* Updated width */
+            height: 30px; /* Updated height */
+            font-size: 20px; /* Fixed typo */
+            padding: 1px 1px; /* 枠内側 */
+            color: black; /* 文字色 */
+            font-weight: bold; /* 太字 */
+            border-radius: 10px; /* 角丸 */
+            background-color: orange; /* ボタン色 */
+        }
+        #fileButton { /*dounloadBTN */
+            display: none; /*隠す　*/
+            width: 60px; /*60px; 4em/* Updated width */
+            height: 30px; /* Updated height */
+            line-height: 100%;
+            font-size: 12px; /* Fixed typo */
+            padding: 1px 1px; /* 枠内側 */
+            color: black; /* 文字色 */
+            font-weight: bold; /* 太字 */
+            border-radius: 10px; /* 角丸 */
+            background-color: orange; /* ボタン色 */
+        }
+        #mailButton {
+            width: 60px; /* Updated width */
+            height: 30px; /* Updated height */
+            font-size: 20px; /* Fixed typo */
+            padding: 1px 1px; /* 枠内側 */
+            color: white; /* 文字色 */
+            font-weight: bold; /* 太字 */
+            border-radius: 10px; /* 角丸 */
+            background-color: purple; /* ボタン色 */
+        }
+        #returnButton {
+            width: 60px; /* Updated width */
+            height: 30px; /* Updated height */
+            font-size: 20px; /* Fixed typo */
+            padding: 1px 1px; /* 枠内側 */
+            color: white; /* 文字色 */
+            font-weight: bold; /* 太字 */
+            border-radius: 10px; /* 角丸 */
+            background-color: green; /* ボタン色 */
+        }
+    </style>
+
+<body>
+    <div class="timer-container">
+        <button id="startButton">開始</button>
+        <div id="timer">5</div>
+
+        <div class="button-container">
+        <!-- スタート時刻を表示する入力ボックス -->
+        <input type="text" id="startTimeInput" readonly style="width:70px; text-align: center; margin-right: 5px; height: 20px;"></div>
+    </div>  
+
+    <div class="button-container">
+        <button id="showDataButton">show</button>
+    
+        <button id="clearDataButton">clear</button>
+        <button id="mailButton" type="submit">Mail</button>
+        <button id="returnButton" type="submit">目次へ</button>
+    </div> <!--ボタンの改行-->
+    <div class="button-container">
+        <button id="fileButton" type="submit">ダウン<br>ロード</button> 
+        
+    </div>
+
+    <div class="data-container" id="dataContainer">
+        <!-- 保存されたデータがここに表示される -->
+        
+    </div>
+
+    <script>
+        const dataContainer = document.getElementById("dataContainer");
+        const startTimeInput = document.getElementById("startTimeInput");
+        // let interval = null; // intervalを初期化
+
+        // 初期値を設定
+        startTimeInput.value = "0:0:0";
+
+        // データ一覧を表示する
+        document.getElementById("showDataButton").addEventListener("click", function () {
+            const savedData = localStorage.getItem("startsavedData");
+            if (savedData) {
+                const dataList = savedData.split("\n");
+                dataContainer.innerHTML = dataList.map(data => `<p>${data}</p>`).join("");
+            } else {
+                dataContainer.innerHTML = "<p>保存されたデータはありません。</p>";
+            }
+            // ページ最終行へジャンプ
+            dataContainer.scrollTop = dataContainer.scrollHeight;
+        });
+
+        // データを削除する
+        document.getElementById("clearDataButton").addEventListener("click", function () {
+            const confirmDelete = confirm("データを削除しますか？ (Y/N)");
+            if (confirmDelete) {
+                localStorage.removeItem("startsavedData");
+                dataContainer.innerHTML = "<p>データが削除されました。</p>";
+            }
+        });
+
+        let interval = null; // グローバルスコープで interval を定義
+
+        document.getElementById("startButton").addEventListener("click", function () {
+            const startButton = document.getElementById("startButton");
+            const timerElement = document.getElementById("timer");
+            const bibNumberInput = document.getElementById("bibNumberInput");
+            const dnsCheckbox = document.getElementById("dnsCheckbox");
+            const startTimeInput = document.getElementById("startTimeInput");
+            const classInput = document.getElementById("classInput").value; // 修正: .value を追加
+            const runInput = document.getElementById("runInput").value; // 修正: .value を追加
+            const bibNumberValue = bibNumberInput.value; // 修正: .value を追加して値を取得
+            let countdown = 5; // カウントダウンを初期化
+
+            if (!classInput || !runInput || !bibNumberValue) {
+                // 入力が空の場合、アラートを表示
+                alert("すべての項目を入力してください。");
+                return;
+            }
+            
+                    // カウントダウンを開始
+            if (startButton.textContent === "開始") {
+                // ボタンの状態を切り替える
+                startButton.textContent = "中止";
+                startTimeInput.value = "0:0:0"; // スタート時刻をリセット
+                timerElement.textContent = countdown;
+
+                // カウントダウン処理
+                interval = setInterval(() => {
+                    if (countdown > 1) {
+                        countdown--;
+                        timerElement.textContent = countdown;
+                        playBeep('pi'); // ぴ
+                    } else if (countdown === 1) {  
+                        timerElement.textContent = "GO"; //"0"の代わりに"GO"を表示
+                        playBeep('poo'); // ぷー
+                        clearInterval(interval);
+
+                        // 現在時刻を取得
+                        let currentTime = new Date().toLocaleTimeString();
+
+                        // DNSチェックボックスの状態を確認
+                        if (dnsCheckbox.checked) {
+                            currentTime = "DNS"; // DNSがチェックされている場合、タイムを"DNS"に設定
+                        }
+
+                        // スタート時刻を表示
+                        startTimeInput.value = currentTime;
+
+                        // 書式に従ってデータを作成
+                        const formattedData = `c${classInput},r${runInput},z${bibNumberInput.value},t${currentTime}/`;
+
+                        // 保存処理
+                        const existingData = localStorage.getItem("startsavedData") || "";
+
+                        const updatedData = existingData ? `${existingData}\n${formattedData}` : formattedData;
+                        localStorage.setItem("startsavedData", updatedData);
+
+         
+                        // データ一覧を表示
+                        console.log("保存されたデータ:", formattedData);
+                        const savedData = localStorage.getItem("startsavedData");
+                        if (savedData) {
+                            const dataList = savedData.split("\n");
+                            dataContainer.innerHTML = dataList.map(data => `<p>${data}</p>`).join("");
+                        } else {
+                            dataContainer.innerHTML = "<p>保存されたデータはありません。</p>";
+                        }
+                        // ページ最終行へジャンプ
+                        dataContainer.scrollTop = dataContainer.scrollHeight;
+
+                        // 1秒後にDNSチェックボックスをオフにし、BIB番号をクリアしてカーソルを置く
+                        setTimeout(() => {
+                            dnsCheckbox.checked = false;
+                            bibNumberInput.value = ""; // BIB番号をクリア
+                            bibNumberInput.focus(); // カーソルを置く
+                            console.log("DNSチェックボックスがオフになり、BIB番号がクリアされました");
+                        }, 1000);
+
+                        // ボタンを「開始」に戻す
+                        startButton.textContent = "開始";
+                    }
+                }, 1000);
+            } else {
+                // 停止処理
+                clearInterval(interval); // カウントダウンを停止
+                countdown = 5; // カウントダウンをリセット
+                timerElement.textContent = "5"; // タイマーをリセット
+                startButton.textContent = "開始"; // ボタンを「開始」に戻す
+                console.log("カウントダウンが停止しました");
+            }
+            
+        });
+
+        // 音を鳴らす関数
+        // 追加：ビープ音を鳴らす関数
+function playBeep(type) {
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.type = 'sine';
+    if (type === 'pi') {
+        osc.frequency.value = 1000; // 高め
+        gain.gain.value = 0.5;
+    } else {
+        osc.frequency.value = 800; // 低め
+        gain.gain.value = 0.7;
+    }
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.start();
+    osc.stop(ctx.currentTime + (type === 'pi' ? 0.1 : 0.7)); // ぴ:短く、ぷー:長く
+    osc.onended = () => ctx.close();
+}
+    </script>
+    <script>
+    // ファイルダウンロード
+    document.getElementById("fileButton").addEventListener("click", function(event) {
+    event.preventDefault();
+
+    // 保存データを取得
+    const savedData = `start/${localStorage.getItem("startsavedData") || ""}end`;
+    const filename = "startfile.txt";
+
+    // Blobを使ってファイルを作成
+    const blob = new Blob([savedData], { type: "text/plain" });
+    const url = URL.createObjectURL(blob);
+
+    // ダウンロード用リンクを作成してクリック
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = filename;
+    a.click();
+
+    // メモリ解放
+    URL.revokeObjectURL(url);
+    });
+
+    // メール送信
+    document.getElementById("mailButton").addEventListener("click", function(event) {
+    event.preventDefault();
+
+    // 保存データを取得
+    const rawData = localStorage.getItem("startsavedData");
+    if (!rawData) {
+        alert("保存されたデータはありません。");
+        return;
+    }
+    const savedData = `start/${rawData.replace(/\n/g, "")}end`;
+
+
+    // メール本文用にエンコード
+    const body = encodeURIComponent(savedData);
+    const subject = encodeURIComponent("スラローム採点");
+
+    //*****************************************************************************
+    const to = "Acc-Mca@outlook.jp";
+    const cc = "ikzee.418@outlook.jp";
+
+    // mailtoリンクを作成して開く
+    window.location.href = `mailto:?to=${to}?cc=${cc}?subject=${subject}&body=${body}`;
+    //window.location.href = `mailto:?subject=${subject}&body=${body}`;
+    });
+
+    // メニューへ戻る
+    document.getElementById("returnButton").addEventListener("click", function(event) {
+    event.preventDefault();
+    // メニューへ戻る処理
+    window.location.href = "index.html";
+    });
+</script>
+</body>
+</html>
