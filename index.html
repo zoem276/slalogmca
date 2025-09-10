@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slalog</title>
+    <style>
+        /* ボタンを縦並びにするスタイル */
+        button {
+            display: block;
+            margin: 10px 0;
+            width: 200px; /* 必要に応じて幅を調整 */
+        }
+
+        /* スマホサイズに対応するスタイル */
+        @media (max-width: 600px) {
+            button {
+                width: 100%; /* ボタンを画面幅に合わせる */
+                font-size: 30px; /* フォントサイズを調整 */
+                margin: auto; /* 中央揃え */
+            }
+
+            h1 {
+                font-size: 24px; /* 見出しのフォントサイズを調整 */
+                text-align: center; /* 見出しを中央揃え */
+            }
+        }
+        button {
+            width: 200px; /* 必要に応じて幅を調整 */
+        }
+        .button-container button {
+            margin-bottom: 20px; /* ボタンとボタンの間隔を10ピクセルに指定 */
+        }
+        button {
+            width: 200px; /* 必要に応じて幅を調整 */
+        }
+    </style>
+</head>
+<body>
+    <h1>slalog</h1>
+    <div class="button-container">
+        <button onclick="location.href='./startchk.html'">スタート記録</button>
+        <button onclick="location.href='./gatechk.html'">ゲート採点</button>
+        <button onclick="location.href='./endchk.html'">ゴール記録</button>
+        <button onclick="location.href='./help.html'">HELP</button>
+        <button id="resetfileButton">初期設定</button>
+    </div>
+
+<script>
+    // 初期設定ボタンがクリックされたときの処理
+    document.getElementById("resetfileButton").addEventListener("click", function () {
+        const confirmReset = confirm("初期設定を行いますか？ (Y/N)");
+        if (confirmReset) {
+            // 初期設定の処理をここに記述
+            localStorage.removeItem("STPsavedData");
+            localStorage.removeItem("GATsavedData");
+            localStorage.removeItem("startsavedData");
+            alert("初期設定が完了しました。");
+        }
+    });
+</script>
+
+</body>
+</html>

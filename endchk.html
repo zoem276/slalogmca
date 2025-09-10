@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>スラロームゴール記録</title> 
+    <style>
+        .input-flex-row {
+            display: flex;
+            gap: 5px;
+            justify-content: left-start; /*center;*/ /* 左揃え */   
+            align-items: left; /*center; */ /* 縦方向を中央揃え */
+            /*flex-wrap: wrap;*/ /* 画面が極端に狭い場合は自動で折り返し */
+        }
+        .input-group {
+            display: inline-block;
+            margin-right: 20px;
+            text-align: center;
+        }
+        .input-container {
+            display: inline-block;
+            margin-right: 20px;
+            text-align: center;
+        }
+        .input-label {
+            font-size: 12px;
+            color: black;
+            display: block;
+        }
+        .input-container { 
+            font-size: 12px; /*bib*/
+            color: black;
+            display: block;
+        }
+        
+        p {
+            text-align: center; /* テキストを中央揃え */
+        } 
+        
+        .number-container {
+            display: flex; /* 横並びにする */
+            justify-content: center; /* 中央揃え */
+            gap: 20px; /* ボックス間の余白 */
+        }
+
+        .number-box {
+            width: 50px; /* 入力ボックスの幅を調整 */
+            text-align: center;
+            font-size: 20px;
+        }
+
+        /* スピンボタン非表示（Chrome, Safari, Edge） */
+        /* スピナーを消すためのCSS 追加*/
+        input[type=number]::-webkit-outer-spin-button,
+        input[type=number]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        input[type=number] {
+            -moz-appearance: textfield;
+            appearance: textfield;
+        }
+    </style>
+</head>
+<body>
+  
+<div class="input-group"> <!--container-->
+<!--    <div class="row">
+        <div class="col-md-12"> -->
+            <h4>ゴール記録</h4>
+
+                <div class="input-flex-row">
+                    <div class="input-container">
+                        <label for="classInput"class="input-label">クラス</label>
+                        <input type="number" class="form-control input-box" id="classInput" name="class" style="width: 50px; text-align: center; font: bold; font-size: 28px; background-color:orange ;"min="1" max="30">
+                     </div>
+                    <div class="input-container">   
+                        <label for="runInput" class="input-label">RUN</label>
+                        <input type="number" class="form-control input-box" id="runInput" name="run" style="width: 50px; text-align: center; font: bold; font-size: 28px; background-color: rgb(208, 255, 80);" min="1" max="2">
+                    </div>
+
+                    <div class="input-container">
+                        <label for="bibNumberInput" class="input-label">BIBNo</label>
+                        <input type="number" class="form-control input-box" id="bibNumberInput" name="bibNumber"  style="width: 50px; text-align: center; font: bold; font-size: 28px; background-color:hotpink; color: black;" >
+                    </div>
+                </div> <br>       
+                    <div>
+                    <!--チェックボックス -->
+                        <input type="checkbox" id="dnfCheckbox" name="dnf" value="1" style="margin-left: 5px;">
+                        <label for="dnfCheckbox" style="margin-left: 1px;">DNF</label>
+                    </div>
+        <!--        </div>
+
+            </form>
+        </div>
+    </div> -->
+</div>
+
+<style>
+
+    /* チェックボックスのサイズを大きくする */
+    #dnfCheckbox { 
+        transform: scale(1.5); /* チェックボックスを1.5倍に拡大 */
+        margin-left: 10px; /* 左側に余白を追加 */
+    }
+    /* スマホサイズに対応するスタイル */
+    @media (max-width: 600px) {
+        .input-flex-row {
+            display: flex;
+            gap: 20px;
+            justify-content: center; /* これで中央揃え */
+        }
+        .input-container {
+            flex-direction: column;  /* スマホでは縦並びにする */
+            align-items: center;
+            display: flex; /*block;*/
+            margin: 0 0 0 0;
+            width: 100%;
+            text-align: center; /*ラベルの位置 */
+        }
+        .input-label {
+            font-size: 10px;
+            margin-bottom: 2px;
+            line-height: 1.1;
+        }
+        .input-box {
+            width: 50px; /* 入力ボックスを画面幅に合わせる */
+        }
+
+        button {
+            width: 50px; /* ボタンを画面幅に合わせる */
+            font-size: 16px; /* ボタンのフォントサイズを調整 */
+        }
+
+        h2 {
+            font-size: 32px; /* 見出しのフォントサイズを調整 */
+            /* text-align: center; /* 見出しを中央揃え */
+        }
+        #classInput {
+            width: 50px; 
+            text-align: center;
+            font-size: 20px;
+            background-color: violet; 
+        }
+       #runInput {
+            width: 50px; 
+            text-align: center;
+            font-size: 20px;
+            background-color: yellow;
+        }
+        #bibNumberInput {
+            width: 80px; 
+            text-align: center;
+            font-size: 42px;
+            background-color: lightgreen; 
+        } 
+    }
+</style>
+</body>
+
+ <style>
+        body {
+            font-size: 20px;
+            line-height: 1.0;
+            margin: 0;
+            padding: 10px;
+        }
+
+       
+
+        #stopButton {
+            width: 70px;
+            height: 70px; /* Updated height */
+            font-size: 20px; /* Fixed typo */
+            padding: 1px 1px ; /* 枠内側 */
+            color: white; /* 文字色 */
+            font-weight: bold; /* 太字 */
+            border-radius: 10px; /* 角丸 */
+            background-color: blue; /* ボタン色 */
+            margin-bottom: 10px;
+        }
+
+        .data-container {
+            margin-top: 20px;
+            max-height: 150px; /* 表示領域の高さを制限 */
+            overflow-y: auto; /* 溢れた場合にスクロール */
+            border: 1px solid #ccc;
+            padding: 10px;
+            background-color: #f9f9f9;
+            font-size: 14px; /* 文字サイズを14pxに設定 */
+            line-height: 1.2; /* 行間を狭く設定 */
+        }
+        
+        .data-container p {
+        margin: 2px 0; /* 行間をさらに狭くする */
+        }
+        .button-container {
+            display: flex;
+            justify-content: right; /* center; */
+            gap: 10px;
+        }
+
+        button {
+            font-size: 14px; /* フォントサイズを12pxに設定 */
+            padding: 3px 2px; /* Updated padding */
+            cursor: pointer;
+        }
+        #showDataButton {
+            width: 60px; /* Updated width */
+            height: 30px; /* Updated height */
+            font-size: 20px; /* Fixed typo */
+            padding: 1px 1px; /* 枠内側 */
+            color: black; /* 文字色 */
+            font-weight: bold; /* 太字 */
+            border-radius: 10px; /* 角丸 */
+            background-color: lightgreen; /* ボタン色 */
+        }
+        #clearDataButton {
+            width: 60px; /* Updated width */
+            height: 30px; /* Updated height */
+            font-size: 20px; /* Fixed typo */
+            padding: 1px 1px; /* 枠内側 */
+            color: black; /* 文字色 */
+            font-weight: bold; /* 太字 */
+            border-radius: 10px; /* 角丸 */
+            background-color: orange; /* ボタン色 */
+        }
+        #fileButton {
+            display: none; /* 非表示 */
+            width: 60px; /*60px; 4em/* Updated width */
+            height: 30px; /* Updated height */
+            line-height: 100%;
+            font-size: 12px; /* Fixed typo */
+            padding: 1px 1px; /* 枠内側 */
+            color: black; /* 文字色 */
+            font-weight: bold; /* 太字 */
+            border-radius: 10px; /* 角丸 */
+            background-color: orange; /* ボタン色 */
+        }
+        #mailButton {
+            width: 60px; /* Updated width */
+            height: 30px; /* Updated height */
+            font-size: 20px; /* Fixed typo */
+            padding: 1px 1px; /* 枠内側 */
+            color: white; /* 文字色 */
+            font-weight: bold; /* 太字 */
+            border-radius: 10px; /* 角丸 */
+            background-color: purple; /* ボタン色 */
+        }
+        #returnButton {
+            width: 60px; /* Updated width */
+            height: 30px; /* Updated height */
+            font-size: 20px; /* Fixed typo */
+            padding: 1px 1px; /* 枠内側 */
+            color: white; /* 文字色 */
+            font-weight: bold; /* 太字 */
+            border-radius: 10px; /* 角丸 */
+            background-color: green; /* ボタン色 */
+        }
+    </style>
+
+<body>
+
+    <div class="timer-container"> 
+        <button id="stopButton">ゴール</button>
+    
+    <!-- ゴール時刻を表示する入力ボックス -->
+        <input type="text" id="stopTimeInput" readonly style="width: 100px; text-align: center; margin-right: 10px;">
+    </div>  
+    <!--<div class="button-container"> -->
+        <!-- ゴール時刻を表示する入力ボックス -->
+    <!--    <input type="text" id="stopTimeInput" readonly style="width: 100px; text-align: center; margin-right: 10px;"> -->
+    <!-- </div> -->
+    <div class="button-container">
+        <button id="showDataButton">show</button>
+        <button id="clearDataButton">clear</button>
+        <button id="mailButton" type="submit">Mail</button> 
+        <button id="returnButton" type="submit">目次へ</button>
+    </div>
+    <div class="button-container">
+        <!-- ダウンロードとメール送信ボタン -->
+        <button id="fileButton" type="submit">ダウン<br>ロード</button> 
+   
+    </div>
+
+    <div class="data-container" id="dataContainer">
+        <!-- 保存されたデータがここに表示される -->
+        
+    </div>
+
+    <script>
+        const dataContainer = document.getElementById("dataContainer");
+        const stopTimeInput = document.getElementById("stopTimeInput"); 
+
+        // データ一覧を表示する
+        document.getElementById("showDataButton").addEventListener("click", function () {
+            const savedData = localStorage.getItem("STPsavedData");
+            if (savedData) {
+                const dataList = savedData.split("\n");
+                dataContainer.innerHTML = dataList.map(data => `<p>${data}</p>`).join("");
+            } else {
+                dataContainer.innerHTML = "<p>保存されたデータはありません。</p>";
+            }
+            // ページ最終行へジャンプ
+            dataContainer.scrollTop = dataContainer.scrollHeight;
+        });
+
+        // データを削除する
+        document.getElementById("clearDataButton").addEventListener("click", function () {
+            const confirmDelete = confirm("データを削除しますか？ (Y/N)");
+            if (confirmDelete) {
+                localStorage.removeItem("STPsavedData");
+                dataContainer.innerHTML = "<p>データが削除されました。</p>";
+                // 追加: データ削除後に表示を更新
+                const savedData = localStorage.getItem("STPsavedData");
+                if (savedData) {
+                    const dataList = STPsavedData.split("\n");
+                    dataContainer.innerHTML = dataList.map(data => `<p>${data}</p>`).join("");
+                } else {
+                    dataContainer.innerHTML = "<p>保存されたデータはありません。</p>";
+                }
+            }
+        });
+
+        // ゴールボタンのクリックイベント
+        document.getElementById("stopButton").addEventListener("click", function () {
+            const startButton = document.getElementById("stopButton"); 
+
+            const bibNumberInput = document.getElementById("bibNumberInput");
+            const dnsCheckbox = document.getElementById("dnfCheckbox");  
+            const startTimeInput = document.getElementById("stopTimeInput");
+            const classInput = document.getElementById("classInput").value; 
+            const runInput = document.getElementById("runInput").value; 
+            const bibNumberValue = bibNumberInput.value; // 修正: .value を追加して値を取得
+
+            if (!classInput || !runInput || !bibNumberValue) {
+                // 入力が空の場合、アラートを表示
+                alert("すべての項目を入力してください。");
+                return;
+            }
+                 
+            // 現在時刻を取得
+            let currentTime = new Date().toLocaleTimeString();
+
+            // DNSチェックボックスの状態を確認
+            if (dnfCheckbox.checked) {
+                currentTime = "DNF"; // DNFがチェックされている場合、タイムを"DNF"に変える
+            }
+
+            // ゴール時刻を表示
+            stopTimeInput.value = currentTime;
+
+            // 書式に従ってデータを作成
+            const formattedData = `c${classInput},r${runInput},z${bibNumberInput.value},t${currentTime}/`;
+
+            // 保存処理
+            const existingData = localStorage.getItem("STPsavedData") || "";
+
+            const updatedData = existingData ? `${existingData}\n${formattedData}` : formattedData;
+            localStorage.setItem("STPsavedData", updatedData); // Fixed key to "STPsavedData"
+
+            // 1秒後にDNFチェックボックスをオフにし、BIB番号をクリアしてカーソルを置く
+            setTimeout(() => {
+                dnfCheckbox.checked = false;
+                bibNumberInput.value = ""; // BIB番号をクリア
+                bibNumberInput.focus(); // カーソルを置く
+
+            }, 1000);
+            
+            // ゴール一覧時刻を表示
+            const savedData = localStorage.getItem("STPsavedData");
+            if (savedData) {
+                const dataList = savedData.split("\n");
+                dataContainer.innerHTML = dataList.map(data => `<p>${data}</p>`).join("");
+            } else {
+                dataContainer.innerHTML = "<p>保存されたデータはありません。</p>";
+            }
+            // ページ最終行へジャンプ
+            dataContainer.scrollTop = dataContainer.scrollHeight;
+
+        });
+    </script>
+
+    <script>
+    // ファイルダウンロード
+    document.getElementById("fileButton").addEventListener("click", function(event) {
+    event.preventDefault();
+
+    // 保存データを取得
+    const savedData = `goal/${localStorage.getItem("STPsavedData") || ""}end`;
+    const filename = "ゴール記録.txt";
+
+    // Blobを使ってファイルを作成
+    const blob = new Blob([savedData], { type: "text/plain" });
+    const url = URL.createObjectURL(blob);
+
+    // ダウンロード用リンクを作成してクリック
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = filename;
+    a.click();
+
+    // メモリ解放
+    URL.revokeObjectURL(url);
+    });
+
+    // メール送信
+    document.getElementById("mailButton").addEventListener("click", function(event) {
+    event.preventDefault();
+
+    // 保存データを取得
+    const rawData = localStorage.getItem("STPsavedData");
+    if (!rawData) {
+        alert("保存されたデータはありません。");
+        return;
+    }
+    const savedData = `goal/${rawData.replace(/\n/g, "")}end`;
+
+    // メール本文用にエンコード
+    const body = encodeURIComponent(savedData);
+    const subject = encodeURIComponent("スラローム採点");
+
+    //送信先アドレス++++++++++++++++++++++++++++++++++++++++++++++
+    const to = "ikzee.418@outlook.jp"; //宛先 
+    const cc = "ikzee.418@outlook.jp"; //写し
+    //***********************************************************
+
+    // mailtoリンクを作成して開く
+    window.location.href = `mailto:${to}?cc=${cc}&subject=${subject}&body=${body}`;
+    //<a class="mailtoui" href="mailto:?subject=スラローム採点&body=${body}"></a>;
+    });
+
+    // メニューへ戻る
+    document.getElementById("returnButton").addEventListener("click", function(event) {
+    event.preventDefault();
+    // メニューへ戻る処理
+    window.location.href = "index.html";
+    });
+</script>
+</body>
+</html>
