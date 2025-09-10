@@ -236,7 +236,7 @@
             border-radius: 10px; /* 角丸 */
             background-color: orange; /* ボタン色 */
         }
-        #fileButton { /*DownloadBTN */
+        #fileButton { /*dounloadBTN */
             display: none; /*隠す　*/
             width: 60px; /*60px; 4em/* Updated width */
             height: 30px; /* Updated height */
@@ -480,13 +480,14 @@ function playBeep(type) {
     // メール本文用にエンコード
     const body = encodeURIComponent(savedData);
     const subject = encodeURIComponent("スラローム採点");
-//送信先アドレス++++++++++++++++++++++++++++++++++++++++++++++
-    const to = "ikzee.418@outlook.jp"; //宛先 
-    const cc = "ikzee.418@outlook.jp"; //写し
-    //***********************************************************
+
+    //*****************************************************************************
+    const to = "Acc-Mca@outlook.jp";
+    const cc = "ikzee.418@outlook.jp";
+
     // mailtoリンクを作成して開く
+    window.location.href = `mailto:?to=${to}?cc=${cc}?subject=${subject}&body=${body}`;
     //window.location.href = `mailto:?subject=${subject}&body=${body}`;
-    window.location.href = `mailto:${to}?cc=${cc}&subject=${subject}&body=${body}`;
     });
 
     // メニューへ戻る
